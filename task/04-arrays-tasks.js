@@ -523,7 +523,12 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-    throw new Error('Not implemented');
+    let map = new Map();
+    array.map(function(x) {
+        if (!map.has(keySelector(x)))
+            map.set(keySelector(x), array.filter(y => keySelector(x) === keySelector(y)).map(z => valueSelector(z)))
+    });
+    return map;
 }
 
 
